@@ -1,5 +1,5 @@
 execute pathogen#infect()
-set nocompatibile
+set nocompatible
 filetype plugin on
 syntax enable
 set background=dark
