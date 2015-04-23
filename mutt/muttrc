@@ -1,0 +1,19 @@
+#Hopefully a comment?
+source /home/sklarj/.mutt/mutt-colors-solarized-dark-16.muttrc
+
+#IMAP setup.
+mailboxes imap://imap.linux.ibm.com
+set folder=imaps://imap.linux.ibm.com/
+set imap_user=#Set to your username
+set imap_pass=#Set to your password
+set spoolfile=+INBOX
+set header_cache=#Set it to where you want your headers to cache
+
+#Settings for the mutt threading.
+set sort="threads"
+set strict_threads="yes"
+set sort_browser="reverse-date"
+set sort_aux="last-date-received"
+unset collapse_unread
+bind index - collapse-thread
+bind index _ collapse-all
