@@ -1,4 +1,4 @@
-#Hopefully a comment?
+#Josh's not so sophisticated muttrc file.
 source /home/sklarj/.mutt/mutt-colors-solarized-dark-16.muttrc
 
 #IMAP setup.
@@ -17,3 +17,10 @@ set sort_aux="last-date-received"
 unset collapse_unread
 bind index - collapse-thread
 bind index _ collapse-all
+
+#Mutt Macros
+#The "O crap I'm behind" mark all in the folder as read macro.
+macro index A "<tag-pattern>\~U<enter> \
+    <tag-prefix><clear-flag>N\\ <tag-prefix><clear-flag>O \
+    <untag-pattern>\~T<enter>" \
+    "Mark all as read"
