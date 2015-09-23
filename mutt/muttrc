@@ -1,13 +1,33 @@
 #Josh's not so sophisticated muttrc file.
+#That is getting more sophisticated...
+#NOTE: The sidebar additions require using a version of mutt that has
+#the mutt sidebar patch. Happy to report modern distros just include
+#a version like that in the repo, though it's also very easy to compile.
 source /home/sklarj/.mutt/mutt-colors-solarized-dark-16.muttrc
 
+#Josh's settings for outgoing mail
+set realname="Josh Sklar"
+set from="sklar@linux.vnet.ibm.com"
+set use_from=yes
+
 #IMAP setup.
-mailboxes imap://imap.linux.ibm.com
 set folder=imaps://imap.linux.ibm.com/
 set imap_user=#Set to your username
 set imap_pass=#Set to your password
 set spoolfile=+INBOX
 set header_cache=#Set it to where you want your headers to cache
+mailboxes +INBOX \
+	  +BugMail \
+	  +LKML \
+          +Linux-Security-Module \
+          +Linuxppc-dev \
+
+#Basic mutt settings
+unset move
+set delete
+unset confirmappend
+set quit
+unset mark_old
 
 #Settings for the mutt threading.
 set sort="threads"
@@ -17,6 +37,21 @@ set sort_aux="last-date-received"
 unset collapse_unread
 bind index - collapse-thread
 bind index _ collapse-all
+
+# Sidebar Patch --------------------------------------
+set sidebar_delim   = '  │'
+set sidebar_visible = yes
+set sidebar_width   = 50
+
+# Status Bar -----------------------------------------
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# Header Options -------------------------------------
+ignore *                                # ignore all headers
+unignore from: to: cc: date: subject:   # show only these
+unhdr_order *                           # some distros order things by default
+hdr_order from: to: cc: date: subject:  # and in this order
 
 #Mutt Macros
 #The "O crap I'm behind" mark all in the folder as read macro.
