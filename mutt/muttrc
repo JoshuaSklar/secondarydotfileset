@@ -21,6 +21,10 @@ mailboxes +INBOX \
 	  +LKML \
           +Linux-Security-Module \
           +Linuxppc-dev \
+	  +Kernel-Dept \
+	  +LTC-Interlock \
+          +Linux-Power-Port-Tune \
+          +PKVM \
 
 #Basic mutt settings
 unset move
@@ -42,6 +46,7 @@ bind index _ collapse-all
 set sidebar_delim   = '  │'
 set sidebar_visible = yes
 set sidebar_width   = 50
+set sidebar_shortpath = yes #Fixes a bug where the first character of the folder is chomped.
 
 # Status Bar -----------------------------------------
 set status_chars  = " *%A"
