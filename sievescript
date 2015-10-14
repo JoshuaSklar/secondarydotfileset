@@ -1,0 +1,87 @@
+require ["fileinto"];
+# rule:[Move Bugzilla Mail]
+if address :is "from" "bugzilla@us.ibm.com"
+{
+	fileinto "BugMail";
+}
+
+# rule:[Move PPC dev mail]
+if address :is "cc" "linuxppc-dev@lists.ozlabs.org"
+{
+        fileinto "Linuxppc-dev";
+}
+if address :is "to" "linuxppc-dev@lists.ozlabs.org"
+{
+        fileinto "Linuxppc-dev";
+}
+if address :is "cc" "linuxppc-dev@ozlabs.org"
+{
+        fileinto "Linuxppc-dev";
+}
+if address :is "to" "linuxppc-dev@ozlabs.org"
+{
+        fileinto "Linuxppc-dev";
+}
+
+# rule:[Move Linux security module mail]
+if address :is "cc" "linux-security-module@vger.kernel.org"
+{
+        fileinto "Linux-Security-Module";
+}
+if address :is "to" "linux-security-module@vger.kernel.org"
+{
+        fileinto "Linux-Security-Module";
+}
+
+# rule:[Move Power Port Tune list email.]
+if address :is "cc" "power-port-tune@lists.linux.ibm.com"
+{
+        fileinto "Linux-Power-Port-Tune";
+}
+if address :is "to" "power-port-tune@lists.linux.ibm.com"
+{
+        fileinto "Linux-Power-Port-Tune";
+}
+
+# rule:[Move linux kernel department mail]
+if address :is "cc" "ltc-kernel-dept@lists.linux.ibm.com"
+{
+        fileinto "Kernel-Dept";
+}
+if address :is "to" "ltc-kernel-dept@lists.linux.ibm.com"
+{
+        fileinto "Kernel-Dept";
+}
+
+# rule:[Move ltc interlock mail]
+if address :is "cc" "ltc-interlock@lists.linux.ibm.com"
+{
+        fileinto "LTC-Interlock";
+}
+if address :is "to" "ltc-interlock@lists.linux.ibm.com"
+{
+        fileinto "LTC-Interlock";
+}
+
+#Attempt to start filtering by email list
+#Sadly this kind of sieve is not supported by our server :(
+#Keeping this for some future setup and as an example.
+#if header :is "List-Id" "linux-security-module.vger.kernel.org"
+#{
+#        fileinto "Linux-Security-Module";
+#}
+#
+#if header :is "List-Id" "power-port-tune.lists.linux.ibm.com"
+#{
+#        fileinto "Linux-Power-Port-Tune";
+#}
+#
+#if header :is "List-Id" "ltc-kernel-dept.lists.linux.ibm.com"
+#{
+#        fileinto "Kernel-Dept";
+#}
+#
+#if header :is "List-Id" "ltc-interlock.lists.linux.ibm.com"
+#{
+#        fileinto "LTC-Interlock";
+#}
