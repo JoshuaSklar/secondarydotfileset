@@ -5,17 +5,35 @@
 #a version like that in the repo, though it's also very easy to compile.
 source /home/sklarj/.mutt/mutt-colors-solarized-dark-16.muttrc
 
-#Josh's settings for outgoing mail
+#Josh's settings for outgoing mail -------------------
 set realname="Josh Sklar"
 set from="sklar@linux.vnet.ibm.com"
 set use_from=yes
+set envelope_from                    # which from?
+set sig_dashes                       # dashes before sig
+set edit_headers                     # show headers when composing
+set fast_reply                       # skip to compose when replying
+set askcc                            # ask for CC:
+set fcc_attach                       # save attachments with the body
+unset mime_forward                   # forward attachments as part of body
+set forward_format = "Fwd: %s"       # format of subject when forwarding
+set forward_decode                   # decode when forwarding
+set attribution = "On %d, %n wrote:" # format of quoting header
+set reply_to                         # reply to Reply to: field
+set reverse_name                     # reply as whomever it was to
+set include                          # include message in replies
+set forward_quote                    # include message in forwards
+set editor = "vim"
 
-#IMAP setup.
+#IMAP setup ------------------------------------------
 set folder=imaps://imap.linux.ibm.com/
 set imap_user=#Set to your username
 set imap_pass=#Set to your password
 set spoolfile=+INBOX
 set header_cache=#Set it to where you want your headers to cache
+set signature        = ~/.mutt/sig           # my signature file
+set alias_file       = ~/.mutt/alias         # where to store aliases
+source ~/.mutt/alias
 mailboxes +INBOX \
 	  +BugMail \
 	  +LKML \
@@ -26,19 +44,32 @@ mailboxes +INBOX \
           +Linux-Power-Port-Tune \
           +PKVM \
 
-#Basic mutt settings
+#Basic mutt settings ---------------------------------
 unset move
 set delete
 unset confirmappend
 set quit
 unset mark_old
 
-#Settings for the mutt threading.
+#Index Settings --------------------------------------
+#The index is the view you see when you open mutt. 
+#It lets you see all your messages in the current folder.
+
+#Index View Settings ---------------------------------
 set sort="threads"
 set strict_threads="yes"
 set sort_browser="reverse-date"
 set sort_aux="last-date-received"
 unset collapse_unread
+set sort_re                                # thread based on regex
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+set date_format = "%m/%d"
+set index_format = "[%Z]  %D  %-20.20F  %s"
+
+#Index Key Bindings ----------------------------------
+bind index gg       first-entry #A little more VIM style
+bind index G        last-entry
+bind index R        group-reply
 bind index - collapse-thread
 bind index _ collapse-all
 
@@ -48,9 +79,41 @@ set sidebar_visible = yes
 set sidebar_width   = 50
 set sidebar_shortpath = yes #Fixes a bug where the first character of the folder is chomped.
 
+# Sidebar Navigation ---------------------------------
+bind index,pager <down>   sidebar-next
+bind index,pager <up>     sidebar-prev
+bind index,pager <right>  sidebar-open
+
 # Status Bar -----------------------------------------
 set status_chars  = " *%A"
 set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+# Pager Settings -------------------------------------
+# The 'pager' is the way you view individual messages. As a different 'mode' then the index you need to reset
+# bindings if you want the same behavior as in the index.
+
+# Pager View Options ---------------------------------
+set pager_index_lines = 10 # number of index lines to show
+set pager_context = 3      # number of context lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+unset markers              # no ugly plus signs
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+
+# Pager Key Bindings ---------------------------------
+bind pager k  previous-line
+bind pager j  next-line
+bind pager gg top
+bind pager G  bottom
+bind pager R  group-reply
+
+# View attachments properly. -------------------------
+bind attach <return> view-mailcap
+
+# Handle the URLS ------------------------------------
+macro pager \Cu "|urlview<enter>" "call urlview to open links"
 
 # Header Options -------------------------------------
 ignore *                                # ignore all headers
@@ -58,9 +121,7 @@ unignore from: to: cc: date: subject:   # show only these
 unhdr_order *                           # some distros order things by default
 hdr_order from: to: cc: date: subject:  # and in this order
 
-#Mutt Macros
+
+#Mutt Macros -----------------------------------------
 #The "O crap I'm behind" mark all in the folder as read macro.
-macro index A "<tag-pattern>\~U<enter> \
-    <tag-prefix><clear-flag>N\\ <tag-prefix><clear-flag>O \
-    <untag-pattern>\~T<enter>" \
-    "Mark all as read"
+macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
