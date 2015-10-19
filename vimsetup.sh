@@ -13,3 +13,7 @@ git clone https://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/
 #Download and install fugitive, the great vim/git plugin
 git clone https://github.com/tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive.git
 vim -u NONE "helptags vim-fugitive/doc" -c q
+
+#Dowload and install surround, the addition of 'surround' words to vim
+git clone git://github.com/tpope/vim-surround.git ~/.vim/bundle/vim-surround.git
+vim -u NONE "helptags vim-surround/doc" -c q
