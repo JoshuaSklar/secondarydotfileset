@@ -3,3 +3,11 @@ alias meWork sklarj@us.ibm.com (Josh Sklar)
 alias meIMAP sklar@linux.vnet.ibm.com (Josh Sklar)
 alias me meHome meWork meIMAP
 alias suka Sukadev Bhattiprolu <sukadev@linux.vnet.ibm.com>
+alias formosa Martha Formosa <formosa@us.ibm.com>
+alias nacc Nishanth Aravamudan <nacc@linux.vnet.ibm.com>
+alias hbabu Haren Myneni <hbabu@us.ibm.com>
+alias pair Ramachandra Pai <pair@us.ibm.com>
+alias mbringm Michael Bringmann <mbringm@us.ibm.com>
+alias tyreld Tyrel Datwyler <tyreld@linux.vnet.ibm.com>
+alias ldufour Laurent Dufour <ldufour@linux.vnet.ibm.com>
+alias PDXKernel suka hbabu pair nacc
