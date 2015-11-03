@@ -3,6 +3,10 @@
 #Move vimrc file
 cp ./vimrc ~/.vimrc
 
+#Setup vim backup and swp directories
+mkdir -p ~/.vim/backup
+mkdir -p ~/.vim/swp
+
 # Setup TPope's pathogen for managing Vim Plugins.
 mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
