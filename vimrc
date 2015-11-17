@@ -33,3 +33,4 @@ au FileType gitcommit set tw=72
 " Specific filetype settings
 autocmd FileType git,gitcommit setlocal foldmethod=syntax foldlevel=1
 autocmd FileType gitcommit setlocal spell
+autocmd BufRead /tmp/mutt-* setlocal spell
