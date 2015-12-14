@@ -112,6 +112,11 @@ bind pager R  group-reply
 # View attachments properly. -------------------------
 bind attach <return> view-mailcap
 
+# Handle recieving HTML email messages by striping html
+set implicit_autoview
+auto_view text/html  application/x-pgp-message
+set mailcap_path="~/.mutt/mailcap"
+
 # Handle the URLS ------------------------------------
 macro pager \Cu "|urlview<enter>" "call urlview to open links"
 
