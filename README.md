@@ -1,7 +1,7 @@
-** This is a collection of Josh's configuration files for his IBM Linux setup.
+** This is a collection of Josh's configuration files for his Linux setup.
 
 I got sick of needing to worry about moving machines and setups among my 
-different IBM setups. To get around this particular problem I'm finally
+different Linux setups. To get around this particular problem I'm finally
 going the formal final step to start moving my various setup scripts 
 to a single git project I can download and use whenever I have a new 
 setup that I need to be able to configure to my needs. To avoid 
